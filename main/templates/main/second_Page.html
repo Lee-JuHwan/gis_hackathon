@@ -38,23 +38,18 @@
 
             {% for i in data %}
                 <div>
-                    {% for a,b,c,d,e in i %}
-                        <div id="title">{{ a }}</div>
-                        <div id="address" >{{ b }}</div>
-                        <div id="score" >{{ c }}</div>
-                        <div id="lat" >{{ d }}</div>
-                        <div id="lng" >{{ e }}</div>
+                    {% for a,b,c,d,e,f in i %}
+                        <div id="rank{{ f }}" style="display: none">{{ f }}</div>
+                        <div id="title{{ f }}" style="display: none">{{ a }}</div>
+                        <div id="address{{ f }}" style="display: none">{{ b }}</div>
+                        <div id="score{{ f }}" style="display: none">{{ c }}</div>
+                        <div id="lat{{ f }}" style="display: none">{{ d }}</div>
+                        <div id="lng{{ f }}" style="display: none">{{ e }}</div>
 
-                        <script>
-                            var data_title = document.getElementById('title').innerText;
-                            var data_address = document.getElementById('address').innerText;
-                            var data_score = document.getElementById('score').innerText;
-                            var data_lng = document.getElementById('lat').innerText;
-                            var data_lat = document.getElementById('lng').innerText;
-                        </script>
 
-                        <script src="{% static '/js/data.js' %}"></script>
                     {% endfor %}
+
+                    <script src="{% static '/js/data.js' %}"></script>
 
 
                 </div>

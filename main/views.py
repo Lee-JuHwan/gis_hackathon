@@ -232,6 +232,8 @@ class SecondView(TemplateView):
     def get(self, request):
         title = '양동시장'
         data = run_model(title)
+        data['rank'] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
         data_list = data.values.tolist()
 
         context = {'title': title, 'data': zip(data_list)}

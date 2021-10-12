@@ -1,11 +1,17 @@
 var positions = new Array();
 
+var step;
+for(step = 1; step<11; step++) {
+    var data_title = document.getElementById('title'+step).innerText;
+    var data_address = document.getElementById('address'+step).innerText;
+    var data_score = document.getElementById('score'+step).innerText;
+    var data_lng = document.getElementById('lat'+step).innerText;
+    var data_lat = document.getElementById('lng'+step).innerText;
 
-document.writeln(data_lat)
-
-// 데이터를 positions 배열에 넣는 부분 특성을 여러개 넣을 수 있음
-positions.push({content: 'TITLE : ' + data_title +
-                    '<br>ADDRESS : ' + data_address +
-                    '<br>SCORE :' + data_score + '<br>',
-                latlng: new kakao.maps.LatLng(data_lat, data_lng)
-                });
+    // 데이터를 positions 배열에 넣는 부분 특성을 여러개 넣을 수 있음
+    positions.push({content: 'TITLE : ' + data_title +
+                        '<br>ADDRESS : ' + data_address +
+                        '<br>SCORE :' + data_score + '<br>',
+                    latlng: new kakao.maps.LatLng(data_lat, data_lng)
+                    });
+}
