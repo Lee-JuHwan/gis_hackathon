@@ -71,6 +71,10 @@
 
     <script src="{% static '/js/map.js' %}"></script>
 
+    <script>
+        var list_title = new Array()
+    </script>
+
     <div style="border-radius: 1rem; margin: 2rem; text-align: center">
         <h1>
 
@@ -84,25 +88,20 @@
                         <div id="lng" >{{ e }}</div>
 
                         <script>
-                            var positions = new Array();
-
                             var data_title = document.getElementById('title').innerText;
+                            list_title.push(data_title)
                             var data_address = document.getElementById('address').innerText;
                             var data_score = document.getElementById('score').innerText;
                             var data_lng = document.getElementById('lat').innerText;
                             var data_lat = document.getElementById('lng').innerText;
 
-                            document.writeln(data_lat)
-
-                            // 데이터를 positions 배열에 넣는 부분 특성을 여러개 넣을 수 있음
-                            positions.push({content: 'TITLE : ' + data_title +
-                                                '<br>ADDRESS : ' + data_address +
-                                                '<br>SCORE :' + data_score + '<br>',
-                                            latlng: new kakao.maps.LatLng(data_lat, data_lng)
-                                            });
+                            document.writeln(list_title + '<br>')
                         </script>
 
+                        <script src="{% static '/js/data.js' %}"></script>
                     {% endfor %}
+
+
                 </div>
             {% endfor %}
 
@@ -110,7 +109,6 @@
 
     </div>
 
-{#    <script src="{% static '/js/data.js' %}"></script>#}
     <script src="{% static '/js/marker_multi.js' %}"></script>
     <script src="{% static '/js/marker_center.js' %}"></script>
 
