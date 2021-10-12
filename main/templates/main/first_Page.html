@@ -1,10 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hackathon_1st</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+
+    <style>
+
+        .container {
+            padding: 0;
+            margin: 3rem 5rem;
+        }
+
+        figure.place {
+            font-family: 'NanumSquareB', cursive;
+            position: relative;
+            overflow: hidden;
+            margin: 2px;
+            max-width: 350px;
+            width: 100%;
+            background: #000000;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 0 1rem darkgray;
+            font-size: 14px;
+            border-radius: 0.5rem;
+        }
+        figure.place * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.45s ease-in-out;
+            transition: all 0.45s ease-in-out;
+        }
+        figure.place img {
+            max-width: 100%;
+            position: relative;
+            opacity: 0.9;
+        }
+        figure.place figcaption {
+            position: absolute;
+            top: 45%;
+            left: 7%;
+            right: 7%;
+            bottom: 45%;
+            border: 1px solid white;
+            border-width: 1px 1px 0;
+        }
+        figure.place .heading {
+            overflow: hidden;
+            -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        figure.place h2 {
+            display: table;
+            margin: 0 auto;
+            padding: 0 10px;
+            position: relative;
+            text-align: center;
+            width: auto;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+        figure.place h2 span {
+            font-weight: 800;
+        }
+        figure.place h2:before,
+        figure.place h2:after {
+            position: absolute;
+            display: block;
+            width: 1000%;
+            height: 1px;
+            content: '';
+            background: white;
+            top: 50%;
+        }
+        figure.place h2:before {
+            left: -1000%;
+        }
+        figure.place h2:after {
+            right: -1000%;
+        }
+        figure.place p {
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            position: absolute;
+            width: 100%;
+            padding: 0 20px;
+            margin: 0;
+            opacity: 0;
+            line-height: 1.6em;
+            font-size: 0.9em;
+        }
+        figure.place a {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            z-index: 1;
+        }
+        figure.place:hover img,
+        figure.place.hover img {
+            opacity: 0.25;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        figure.place:hover figcaption,
+        figure.place.hover figcaption {
+            top: 7%;
+            bottom: 7%;
+        }
+        figure.place:hover p,
+        figure.place.hover p {
+            opacity: 1;
+            -webkit-transition-delay: 0.35s;
+            transition-delay: 0.35s;
+        }
+
+        .search_input {
+            width: 60%;
+            display: block;
+            margin: 1rem auto;
+            padding: 1rem;
+            background-color: transparent;
+            transition: transform 250ms ease-in-out;
+            font-size: 14px;
+            line-height: 18px;
+            color: #575756;
+            border-radius: 1rem;
+        }
+
+    </style>
+
+
+    <div class="search_container">
+        <input class="search_input" type="text" placeholder="장소를 입력해주세요">
+    </div>
+
+    <div class="container">
+
+        {% for title, loc, path in place_list %}
+            <div onclick="move('{{ title }}')">
+                <figure class="place">
+                    <img src="{% static path %}" alt="place_img">
+                    <figcaption>
+                        <p>{{ loc }}</p>
+                        <div class="heading">
+                            <h2>{{ title }}</h2>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+
+    <script>
+        function move(place) {
+            localStorage.setItem('place', place);
+            location.href = {% url 'main:second_Page' %};
+        }
+    </script>
+
+
+{% endblock %}

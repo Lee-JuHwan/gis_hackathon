@@ -201,9 +201,28 @@ def run_model(input_name, weather=0):
 #
 #     return render(request, 'accountapp/hello_world.html', context={'choice_df_list': zip(choice_df_list)})
 
-class FirstView(TemplateView):
-    template_name = 'main/second_Page.html.html'
 
+class FirstView(TemplateView):
+    template_name = 'main/first_Page.html'
+
+    def get_context_data(self, **kwargs):
+        place_list = [('광주시립미술관', '광주광역시 북구 하서로 52', 'imgs/광주시립미술관.jpg'),
+                      ('국립광주박물관', '광주광역시 북구 하서로 110', 'imgs/국립광주박물관.jpg'),
+                      ('국립아시아문화전당', '광주광역시 동구 문화전당로 38', 'imgs/국립아시아문화전당.jpg'),
+                      ('월봉서원', '광주광역시 광산구 광곡길 133', 'imgs/월봉서원.jpg'),
+                      ('5·18민주화운동기록관', '광주광역시 동구 금남로 221', 'imgs/5.18민주화운동기록관.jpg'),
+                      ('무각사', '광주광역시 서구 운천로 230', 'imgs/무각사.jpg'),
+                      ('포충사', '광주광역시 남구 포충로 767', 'imgs/포충사.jpg'),
+                      ('무등산 주상절리대', '광주광역시 동구 용연길', 'imgs/무등산주상절리대.jpg'),
+                      ('쌍암공원', '광주광역시 광산구 첨단중앙로182번길 39', 'imgs/쌍암공원.jpg'),
+                      ('1913 송정역시장', '광주광역시 광산구 송정동 송정로16번길 38', 'imgs/1913송정역시장.jpg'),
+                      ('광주월드컵경기장', '광주광역시 서구 금화로 240 월드컵경기장', 'imgs/월드컵경기장.jpg'),
+                      ('펭귄마을', '광주광역시 남구 천변좌로446번길 7', 'imgs/펭귄마을.png')]
+
+        context = super().get_context_data(**kwargs)
+        context['place_list'] = place_list
+
+        return context
 
 
 
