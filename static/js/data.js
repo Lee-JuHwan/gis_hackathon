@@ -4,7 +4,6 @@ var list_lng = [126.8387464, 126.8387464, 126.8384464, 126.8386465]
 var list_title = ['장소A', '장소B', '장소C', '장소D']
 var list_type = ['체육', '문화', '문화', '문화']
 
-
 // var list_lat = document.getElementById("facility_lat").innerText.split(',');
 // var list_lng = document.getElementById("facility_lng").innerText.split(',');
 

@@ -70,20 +70,50 @@
 
 
     <script src="{% static '/js/map.js' %}"></script>
-    <script src="{% static '/js/data.js' %}"></script>
+
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center">
+        <h1>
+
+            {% for i in data %}
+                <div>
+                    {% for a,b,c,d,e in i %}
+                        <div id="title" >{{ a }}</div>
+                        <div id="address" >{{ b }}</div>
+                        <div id="score" >{{ c }}</div>
+                        <div id="lat" >{{ d }}</div>
+                        <div id="lng" >{{ e }}</div>
+
+                        <script>
+                            var positions = new Array();
+
+                            var data_title = document.getElementById('title').innerText;
+                            var data_address = document.getElementById('address').innerText;
+                            var data_score = document.getElementById('score').innerText;
+                            var data_lng = document.getElementById('lat').innerText;
+                            var data_lat = document.getElementById('lng').innerText;
+
+                            document.writeln(data_lat)
+
+                            // 데이터를 positions 배열에 넣는 부분 특성을 여러개 넣을 수 있음
+                            positions.push({content: 'TITLE : ' + data_title +
+                                                '<br>ADDRESS : ' + data_address +
+                                                '<br>SCORE :' + data_score + '<br>',
+                                            latlng: new kakao.maps.LatLng(data_lat, data_lng)
+                                            });
+                        </script>
+
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+        </h1>
+
+    </div>
+
+{#    <script src="{% static '/js/data.js' %}"></script>#}
     <script src="{% static '/js/marker_multi.js' %}"></script>
     <script src="{% static '/js/marker_center.js' %}"></script>
 
-    <script>
-        dAta = document.getElementById('data').innerText
-        document.writeln()
-    </script>
-    <div>
-
-        {% for i in data %}
-            {{ i }}
-        {% endfor %}
-    </div>
 
 </body>
 </html>

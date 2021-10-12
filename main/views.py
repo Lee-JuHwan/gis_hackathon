@@ -8,8 +8,6 @@ import csv
 import pandas as pd
 import numpy as np
 import requests
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 import warnings; warnings.filterwarnings('ignore')
 
 from django.urls import reverse_lazy
@@ -22,7 +20,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 # Create your views here.
-from accountapp.models import HelloWorld
 
 test_list_df = pd.read_csv('df_last.csv', encoding='utf-8')
 test_list_df2 = pd.read_csv('weather.csv', encoding='utf-8')
@@ -112,8 +109,8 @@ def input_title(input_name):
 
     sim_exp = find_sim_experience(test_list_df, facility_sim_sorted_ind, input_name)
     sim_exp_rainy = find_sim_experience_rainy(test_list_df, facility_sim_sorted_ind, input_name)
-    result_sunny = sim_exp[['이름', '추천점수', '경도', '위도']]
-    result_rain = sim_exp_rainy[['이름', '추천점수', '경도', '위도']]
+    result_sunny = sim_exp[['이름', '주소', '추천점수', '경도', '위도']]
+    result_rain = sim_exp_rainy[['이름', '주소', '추천점수', '경도', '위도']]
 
     # result_sunny = sim_exp[['이름', '대분류', '소분류', '실내/실외', '평점', '투표횟수', '추천점수', '경도', '위도']]
     # result_rain = sim_exp_rainy[['이름', '대분류', '소분류', '실내/실외', '평점', '투표횟수', '추천점수', '경도', '위도']]
@@ -211,7 +208,7 @@ class FirstView(TemplateView):
 
 
 class SecondView(TemplateView):
-    template_name = 'main/second_Page.html.html'
+    template_name = 'main/second_Page.html'
 
     def get(self, request):
         title = '양동시장'
@@ -219,7 +216,7 @@ class SecondView(TemplateView):
         data_list = data.values.tolist()
 
         context = {'title': title, 'data': zip(data_list)}
-        return render(request, 'testapp/test3.html', context=context)
+        return render(request, 'main/second_Page.html', context=context)
 #
 # def hello_world(request):
 #     test_list = pd.read_csv('df_test.csv', encoding='utf-8')
