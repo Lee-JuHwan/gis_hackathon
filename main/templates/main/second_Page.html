@@ -39,7 +39,7 @@
             {% for i in data %}
                 <div>
                     {% for a,b,c,d,e in i %}
-                        <div id="title" >{{ a }}</div>
+                        <div id="title">{{ a }}</div>
                         <div id="address" >{{ b }}</div>
                         <div id="score" >{{ c }}</div>
                         <div id="lat" >{{ d }}</div>
@@ -47,13 +47,10 @@
 
                         <script>
                             var data_title = document.getElementById('title').innerText;
-                            list_title.push(data_title)
                             var data_address = document.getElementById('address').innerText;
                             var data_score = document.getElementById('score').innerText;
                             var data_lng = document.getElementById('lat').innerText;
                             var data_lat = document.getElementById('lng').innerText;
-
-                            document.writeln(list_title + '<br>')
                         </script>
 
                         <script src="{% static '/js/data.js' %}"></script>
